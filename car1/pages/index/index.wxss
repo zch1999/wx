@@ -1,0 +1,6 @@
+/**index.wxss**/
+.section{
+  /* 相对单位 不管什么设备，总高度都是100vh 响应用户的手机*/
+  height: 100vh;
+  /* background-color: red; */
+}
