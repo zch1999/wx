@@ -1,0 +1,10 @@
+<!--pages/demo/demo.wxml-->
+<block wx:for="{{arr}}" wx:key="*this" wx:for-item="data" wx:for-index="idx">
+  <view><checkbox/>{{data}}</view>
+</block>
+<button bindtap="sort">随机排序</button>
+
+<block wx:for="{{arrObj}}">
+  <view><checkbox/>{{item.name}}</view>
+</block>
+<button bindtap="sortObj">随机排序</button>
