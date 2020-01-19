@@ -1,52 +1,10 @@
-// pages/demo/demo.js
-
+// pages/player/player.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    openid:'',
-    arr:['wxml','js','wxss','json'],
-    arrObj:[
-      {
-        id:1,
-        name:'wxml'
-      },
-      {
-        id: 2,
-        name: 'js'
-      },
-      {
-        id: 3,
-        name: 'wxss'
-      },
-      {
-        id: 4,
-        name: 'json'
-      }
-    ]
-  },
-  sort(){
-    const length = this.data.arr.length
-    for(let i=0;i<length;i++){
-      const x = Math.floor(Math.random() * length);
-      const y = Math.floor(Math.random() * length);
-      const temp = this.data.arr[x];
-      this.data.arr[x] = this.data.arr[y];
-      this.data.arr[y] = temp;
-    }
-    this.setData({
-      arr:this.data.arr
-    })
-  },
-  sortObj(){
-    
-  },
-  getMusicInfo(){
-    
-  },
-  getMovieInfo(){
 
   },
 
@@ -54,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log(options)
   },
 
   /**

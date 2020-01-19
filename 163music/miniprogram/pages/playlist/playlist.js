@@ -80,13 +80,14 @@ Page({
   },
   _getPlaylist(){
     wx.showLoading({
-      title: '加载中...',
+      title: '加载中',
     })
     wx.cloud.callFunction({
       name: 'music',
       data: {
         start: this.data.playlist.length,
-        count: MAX_LIMIT
+        count: MAX_LIMIT,
+        $url:'playlist'
       }
     }).then(res => {
       // console.log(res)
