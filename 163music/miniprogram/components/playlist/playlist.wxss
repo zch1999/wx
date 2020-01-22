@@ -17,6 +17,7 @@
   right:10rpx;
   top:4rpx;
   padding-left: 26rpx;
+  background-image: image("../../images/music_bgc.png")
 }
 .playlist-name {
   font-size: 26rpx;
