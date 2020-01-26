@@ -24,6 +24,7 @@ exports.main = async (event, context) => {
       })
   })
 
+//加载歌单歌曲
   app.router('musiclist',async(ctx,next) =>{
     ctx.body = await rp(BASE_URL + '/playlist/detail?id=' + parseInt(event.playlistId))
       .then(res =>{
@@ -31,8 +32,16 @@ exports.main = async (event, context) => {
       })
   })
 
+//播放歌曲
   app.router('musicUrl',async(ctx,next)=>{
     ctx.body = await rp(BASE_URL + `/song/url?id=${event.musicid}`).then((res)=>{
+      return res
+    })
+  })
+
+//加载歌词
+  app.router('lyric',async(ctx,next)=>{
+    ctx.body = await rp(BASE_URL + `/lyric?id=${event.musicid}`).then(res =>{
       return res
     })
   })

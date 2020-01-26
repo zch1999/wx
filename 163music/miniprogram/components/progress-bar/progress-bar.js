@@ -4,13 +4,14 @@ let movableViewWidth = 0
 const backgroundAudioManager = wx.getBackgroundAudioManager()
 let currentSec = -1 //当前的秒数
 let duration = 0 //总时长
+let isMoving = false //表示当前进度条是否在拖拽，解决当进度条在拖拽时候和uodatetime事件有冲突的问题
 
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    isSame:Boolean
   },
 
   /**
@@ -27,6 +28,9 @@ Component({
 
   lifetimes:{
     ready(){
+      if(this.properties.isSame && this.data.showTime.totalTime == '00:00'){
+        this._setTime()
+      }
       this._getMovableDis()
       this._bindBGMEvent()
     },
@@ -41,6 +45,7 @@ Component({
       if(event.detail.source == 'touch'){
         this.data.progress = event.detail.x / (movableAreaWidth - movableViewWidth) * 100
         this.data.movableDis = event.detail.x
+        isMoving = true
       }
     },
     onTouchEnd(){
@@ -51,6 +56,7 @@ Component({
         ['showTime.currentTime']: `${currentTimeFmt.min}:${currentTimeFmt.sec}`
       })
       backgroundAudioManager.seek(duration * this.data.progress /100)
+      isMoving = false
     },
      _getMovableDis(){
       const query = this.createSelectorQuery() //获取当前元素宽度
@@ -66,6 +72,8 @@ Component({
     _bindBGMEvent() {
       backgroundAudioManager.onPlay(() => {
         console.log('onPlay')
+        isMoving = false
+        this.triggerEvent('musicPlay')
       })
 
       backgroundAudioManager.onStop(() => {
@@ -96,23 +104,30 @@ Component({
       // 播放时间与进度条的联动
       backgroundAudioManager.onTimeUpdate(() => {
         // console.log('onTimeUpdate')
-        const currentTime = backgroundAudioManager.currentTime
-        const duration = backgroundAudioManager.duration
-        const sec = currentTime.toString().split('.')[0]
-        if(sec != currentSec){
-          // console.log(currentTime)
-          const currentTimeFmt = this._dateFormat(currentTime)
-          this.setData({
-            movableDis: (movableAreaWidth - movableViewWidth) * currentTime / duration,
-            progress: currentTime / duration *100,
-            ['showTime.currentTime']: `${currentTimeFmt.min}:${currentTimeFmt.sec}`
-          })
-          currentSec = sec
+        if(!isMoving){
+          const currentTime = backgroundAudioManager.currentTime
+          const duration = backgroundAudioManager.duration
+          const sec = currentTime.toString().split('.')[0]
+          if(sec != currentSec){
+            // console.log(currentTime)
+            const currentTimeFmt = this._dateFormat(currentTime)
+            this.setData({
+              movableDis: (movableAreaWidth - movableViewWidth) * currentTime / duration,
+              progress: currentTime / duration *100,
+              ['showTime.currentTime']: `${currentTimeFmt.min}:${currentTimeFmt.sec}`
+            })
+            currentSec = sec
+            //联动歌词
+            this.triggerEvent('timeUpdate',{
+              currentTime
+            })
+          }
         }
       })
 
       backgroundAudioManager.onEnded(() => {
         console.log('onEnded')
+        this.triggerEvent('musicEnd')
       })
 
       backgroundAudioManager.onError((res) => {
