@@ -60,6 +60,20 @@
 					"pathName": "pages/musiclist/musiclist",
 					"query": "\"playlistId\":\"998690134\"",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "blog",
+					"pathName": "pages/blog/blog",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "blog-edit",
+					"pathName": "pages/blog-edit/blog-edit",
+					"query": "nickName= \"衷衷衷\"& avatarUrl= \"https://wx.qlogo.cn/mmopen/vi_32/YjCJXX7X845pvjhX8…AL36TrSO6iaiadDm1UHKsSw1sZqIAAAS6TWetWGic0XYg/132\"",
+					"scene": null
 				}
 			]
 		}

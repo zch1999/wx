@@ -1,57 +1,45 @@
-// pages/blog/blog.js
+// 输入文字最大数
+const MAX_WORDS_NUM = 140
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    modalShow: false,
+    wordsNum: 0,
+    footerBottom: 0
   },
 
-  //发布
-  onPublish(){
-    wx.getSetting({
-      success:(res)=>{
-        // console.log(res)
-        if(res.authSetting['scope.userInfo']){
-          wx.getUserInfo({
-            success:(res)=>{
-              this.onLoginSuccesss({
-                detail:res.userInfo
-              })
-            }
-          })
-        }else{
-          this.setData({
-            modalShow: true
-          })
-        }  
-      }
+  onInput(event){
+    // console.log(event.detail.value)
+    let wordsNum = event.detail.value.length
+    if(wordsNum >= MAX_WORDS_NUM){
+      wordsNum = `最大字数为${MAX_WORDS_NUM}`
+    }
+    this.setData({
+      wordsNum
     })
   },
 
-  //登录成功
-  onLoginSuccesss(event){
+//得到焦点
+  onFocus(event){
     // console.log(event)
-    const detail = event.detail
-    wx.navigateTo({
-      url: `../blog-edit/blog-edit?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,
+    this.setData({
+      footerBottom: event.detail.height
     })
   },
 
-  //登录失败
-  onLoginFail(){
-    wx.showModal({
-      title: '授权用户才能发布博客',
-      content: '',
+//失去焦点
+  onBlur(){
+    this.setData({
+      footerBottom: 0
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
   },
 
   /**

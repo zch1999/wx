@@ -1,2 +1,14 @@
-<!--pages/blog/blog.wxml-->
-<text>pages/blog/blog.wxml</text>
+<view class="container">
+  <view class="header">
+    <view class="publish-container" bindtap="onPublish">
+      <icon class="iconfont icon-fabu"></icon>
+    </view>
+    <view class="search-container">
+      <x-search />
+    </view>
+  </view>
+
+  <!-- 底部弹出层 -->
+  <x-login modalShow="{{modalShow}}" bindloginsuccesss="onLoginSuccesss" bindloginfail="onLoginFail">
+  </x-login>
+</view>

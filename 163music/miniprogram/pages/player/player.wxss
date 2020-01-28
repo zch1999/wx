@@ -79,7 +79,7 @@
 .icon-shangyishoushangyige, .icon-xiayigexiayishou{
   font-size: 80rpx;
 }
-.icon-bofang1, .icon-zanting1{
+.icon-bofang, .icon-zanting{
   font-size: 100rpx;
   margin: 0 50rpx;
 }
