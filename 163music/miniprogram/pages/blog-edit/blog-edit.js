@@ -1,5 +1,7 @@
 // 输入文字最大数
 const MAX_WORDS_NUM = 140
+//最大上传图片数量
+const MAX_IMG_NUM = 9
 Page({
 
   /**
@@ -7,7 +9,9 @@ Page({
    */
   data: {
     wordsNum: 0,
-    footerBottom: 0
+    footerBottom: 0,
+    images: [],
+    selectPhoto: true,
   },
 
   onInput(event){
@@ -33,6 +37,28 @@ Page({
   onBlur(){
     this.setData({
       footerBottom: 0
+    })
+  },
+
+//选择图片
+  onChooseImage(){
+    let max = MAX_IMG_NUM - this.data.images.length
+    wx.chooseImage({
+      count: max,
+      sizeType:  ['original','compresssed'],
+      sourceType:['album','camera'],
+      success:(res) =>{
+        console.log(res)
+        this.setData({
+          images: this.data.images.concat(res.tempFilePaths)
+        })
+        max = MAX_IMG_NUM - this.data.images.length
+        if(max == 0){
+          this.setData({
+            selectPhoto: max <= 0 ? false : true
+          })
+        }
+      },
     })
   },
   /**

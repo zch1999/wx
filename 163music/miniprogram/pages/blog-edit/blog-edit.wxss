@@ -34,3 +34,49 @@
   margin-right: 20rpx;
 }
 
+.image-list{
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  margin-top: 20rpx;
+  /* flex-direction: row; */
+}
+
+.image-wrap{
+  width: 220rpx;
+  height: 220rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.selectphoto{
+  border: 1px #f1f1f1 dashed;
+}
+
+.icon-jiahao{
+  margin-top: 78rpx;
+  color: #f1f1f1
+}
+
+.image{
+  width: 100%;
+  height: 220rpx;
+}
+
+.icon-shanchu{
+  position: absolute;
+  top: -10rpx;
+  right: 0;
+  width: 40rpx;
+  height: 50rpx;
+  background-color: #000;
+  opacity: 0.4;
+  color: #fff;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 38rpx;
+  font-weight: bolder;
+}

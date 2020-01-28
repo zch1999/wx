@@ -2,7 +2,13 @@
   <textarea class="content" placeholder="分享新鲜事..." bindinput="onInput" maxlength="140" auto-focus bindfocus="onFocus" bindblur="onBlur"></textarea>
   <view class="image-list">
     <!-- 显示图片 -->
-    <view class="image-wrap selectphoto">
+    <block wx:for="{{images}}" wx:key="*this">
+      <view class="image-wrap">
+        <image class="image" src="{{item}}" mode="aspectFill"></image>
+        <icon class="iconfont icon-shanchu"></icon>
+      </view>
+    </block>
+    <view class="image-wrap selectphoto" bindtap="onChooseImage" hidden="{{!selectPhoto}}">
       <icon class="iconfont icon-jiahao"></icon>
     </view>
   </view>
