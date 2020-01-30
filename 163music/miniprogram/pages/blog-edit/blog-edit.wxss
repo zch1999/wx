@@ -53,7 +53,7 @@
 }
 
 .selectphoto{
-  border: 1px #f1f1f1 dashed;
+  border: 1px  dashed;
 }
 
 .icon-jiahao{

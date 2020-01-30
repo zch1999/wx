@@ -4,8 +4,8 @@
     <!-- 显示图片 -->
     <block wx:for="{{images}}" wx:key="*this">
       <view class="image-wrap">
-        <image class="image" src="{{item}}" mode="aspectFill"></image>
-        <icon class="iconfont icon-shanchu"></icon>
+        <image class="image" src="{{item}}" mode="aspectFill" bindtap="onPreviewImage" data-imgsrc="{{item}}"></image>
+        <icon class="iconfont icon-shanchu" bindtap="onDelImage" data-index="{{index}}"></icon>
       </view>
     </block>
     <view class="image-wrap selectphoto" bindtap="onChooseImage" hidden="{{!selectPhoto}}">
@@ -15,5 +15,5 @@
 </view>
 <view class="footer" style="bottom:{{footerBottom}}px">
   <text class="words-num">{{wordsNum}}</text>
-  <button class="send-btn">发布</button>
+  <button class="send-btn" bindtap="send">发布</button>
 </view>
