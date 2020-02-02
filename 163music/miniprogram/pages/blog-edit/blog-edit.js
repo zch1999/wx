@@ -6,6 +6,7 @@ const MAX_IMG_NUM = 9
 let content = ''
 //个人信息
 let userInfo = {}
+// let user = {}
 const db = wx.cloud.database()
 Page({
 
@@ -104,6 +105,7 @@ Page({
 
     wx.showLoading({
       title: '发布中',
+      mask: true,
     })
 
     let promiseArr = []
@@ -134,6 +136,7 @@ Page({
       db.collection('blog').add({
         data:{
           ...userInfo,
+          // ...user,
           content,
           img: fileIds,
           createTime: db.serverDate() //服务端时间
@@ -145,6 +148,9 @@ Page({
         })
         
         //返回blog页面，并且刷新
+        const pages = getCurrentPages()
+        const prevPage = pages[pages.length - 2]
+        prevPage.onPullDownRefresh()
         wx.navigateBack({
           
         })
@@ -163,6 +169,9 @@ Page({
   onLoad: function (options) {
     // console.log(options)
     userInfo = options
+    // user = options
+    // console.log(user)
+    // console.log(userInfo)
   },
 
   /**

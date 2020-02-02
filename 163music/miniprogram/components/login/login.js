@@ -19,7 +19,7 @@ Component({
    */
   methods: {
     onGetUserInfo(event){
-      // console.log(event)
+      console.log(event)
       const userInfo = event.detail.userInfo
       if(userInfo){
         this.setData({

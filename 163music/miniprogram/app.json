@@ -6,7 +6,8 @@
     "pages/profile/profile",
     "components/playlist/playlist",
     "pages/player/player",
-    "pages/blog-edit/blog-edit"
+    "pages/blog-edit/blog-edit",
+    "pages/blog-comment/blog-comment"
   ],
   "requiredBackgroundModes": [
     "audio",
